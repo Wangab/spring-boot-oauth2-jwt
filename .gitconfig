@@ -1,0 +1,9 @@
+[http]
+	sslVerify = false
+[gui]
+[gui]
+[user]
+	name = Wangab
+	email = aab0@163.com
+[core]
+	autocrlf = input
