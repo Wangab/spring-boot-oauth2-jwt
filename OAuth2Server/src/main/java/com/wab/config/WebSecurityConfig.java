@@ -6,14 +6,17 @@ import com.wab.service.ApplicationUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.web.cors.CorsUtils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -38,6 +41,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 //.formLogin().and() // 基于Form表单的认证，用户可自定义
                 .httpBasic().disable(); // 启用HTTPBasic认证
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
 
     @Override
