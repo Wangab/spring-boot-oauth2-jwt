@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class AppUserServiceImpl implements AppUserService {
@@ -21,7 +22,8 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public AppUser getAppUserByUsername(String username) {
-        return appUserRepository.findOne(username);
+        Optional<AppUser> result = appUserRepository.findById(username);
+        return result.orElse(null);
     }
 
     @Override

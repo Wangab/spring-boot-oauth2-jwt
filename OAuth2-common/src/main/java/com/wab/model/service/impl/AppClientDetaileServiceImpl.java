@@ -6,6 +6,8 @@ import com.wab.model.service.inf.AppClientDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /**
  * @author wanganbang
  * <p>
@@ -18,6 +20,7 @@ public class AppClientDetaileServiceImpl implements AppClientDetailService {
 
     @Override
     public AppBaseClientDetaile getBaseClientDetaileByID(String app_id) {
-        return clientDetaileRepository.findOne(app_id);
+        Optional<AppBaseClientDetaile> result = clientDetaileRepository.findById(app_id);
+        return result.orElse(null);
     }
 }
